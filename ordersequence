@@ -1,0 +1,45 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int previous = scanner.nextInt();
+        int current = scanner.nextInt();
+        Boolean asc = false;
+        boolean orderNotDecided = false;
+        if (current > previous) {
+            asc = true;
+        }
+
+        if (current == previous) {
+            orderNotDecided = true;
+        }
+
+        while (true) {
+            if (current == 0) {
+                System.out.println(true);
+                break;
+            }
+
+            if (current == previous && orderNotDecided) {
+                previous = current;
+                current = scanner.nextInt();
+                if (current > previous) {
+                    asc = true;
+                }
+                orderNotDecided = current != previous ? false : true;
+                continue;
+            }
+            if (current == previous || asc && current > previous || !asc && previous > current) {
+                previous = current;
+                current = scanner.nextInt();
+                continue;
+
+            } else {
+                System.out.println(false);
+                break;
+            }
+
+
+        }
+    }
+}
